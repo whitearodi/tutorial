@@ -3,6 +3,7 @@ const AdminBro = require('admin-bro')
 const mongoose = require('mongoose')
 const AdminBroExpress = require('@admin-bro/express')
 const AdminBroMongoose = require('@admin-bro/mongoose')
+const port = process.env.PORT || 3000
 
 
 AdminBro.registerAdapter(AdminBroMongoose)
@@ -85,7 +86,8 @@ const run = async () => {
 
     const router = AdminBroExpress.buildRouter( adminBro)
 app.use(adminBro.options.rootPath, router)
-app.listen(3000, ()=>console.log('AdminBro is under localhost:3000/admin'))
+//app.listen(3000, ()=>console.log('AdminBro is under localhost:3000/admin'))
+app.listen(port, ()=>console.log(`AdminBro is under localhost:${port}/admin`))
 
 }
 run()
