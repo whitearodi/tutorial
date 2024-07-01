@@ -4,13 +4,12 @@ const mongoose = require('mongoose')
 const AdminBroExpress = require('@admin-bro/express')
 const AdminBroMongoose = require('@admin-bro/mongoose')
 
-const port = process.env.PORT || 3001;
-
-
 AdminBro.registerAdapter(AdminBroMongoose)
 
 const express = require('express')
-const app = express()
+const app = express();
+
+const port = process.env.PORT || 3001;
 
 //Initialize database along with models 
 const Appointment = require('./models/Appointment')
@@ -42,12 +41,12 @@ const run = async () => {
     const connection = await mongoose.connect('mongodb://localhost:27017/test',{
         useNewUrlParser:true, useUnifiedTopology:true
     })
-
+    console.log('Database connected successfully');
     
 
     const  adminBro = new AdminBro({
         Databases:[connection],
-        rootPath: '/admin', 
+        rootPath: `/admin`, 
         resources:[{resource:Appointment ,options:{parent:sidebarGroups.Client}},
              {resource:Services, options:{parent:sidebarGroups.Client}},
              {resource:Purchased, options:{parent: sidebarGroups.Inventory}},
