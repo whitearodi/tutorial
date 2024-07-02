@@ -46,7 +46,7 @@ const run = async () => {
 
     const  adminBro = new AdminBro({
         Databases:[connection],
-        rootPath: `/admin`, 
+        rootPath: `/`, 
         resources:[{resource:Appointment ,options:{parent:sidebarGroups.Client}},
              {resource:Services, options:{parent:sidebarGroups.Client}},
              {resource:Purchased, options:{parent: sidebarGroups.Inventory}},
@@ -87,7 +87,7 @@ const run = async () => {
     const router = AdminBroExpress.buildRouter( adminBro)
 app.use(adminBro.options.rootPath, router)
 //app.listen(3000, ()=>console.log('AdminBro is under localhost:3000/admin'))
-app.listen(port, ()=>console.log(`AdminBro is under localhost:${port}/admin`))
+app.listen(port, ()=>console.log(`AdminBro is under localhost:${port}/`))
 
 }
 run()
